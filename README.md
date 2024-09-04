@@ -108,7 +108,9 @@ graph TB
       - [ ] Disaster Recovery of "something"
       - [ ] Disaster Recovery of Secondary Server
       - [ ] Disaster Recovery of Main Server
-  - [ ] --placeholder--
+  - [ ] LDAP
+    - [ ] Configuration (Server)
+    - [ ] Configuration (Directory)
   - [ ] --placeholder--
   - [ ] --placeholder--
   - [ ] --placeholder--
