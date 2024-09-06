@@ -82,7 +82,9 @@ graph TB
       - [ ] Topologie
       - [ ] VLAN's
       - [ ] Subnet's
+      - [ ] BGP?
       - [ ] Hardware considerations
+      - [ ] Router/Switch Software/Firmware considerations
     - [ ] Config
       - [ ] Router
         - [ ] VLAN's
@@ -95,7 +97,9 @@ graph TB
     - [ ] Testing
   - [ ] Kubernetes Cluster
     - [ ] talos-test01
-      - [ ] Load Balancer configuration
+      - [ ] Load Balancer configuration (MetalLB)
+      - [ ] external-dns (helm chart)
+      - [ ] Storage
       - [ ] Deploy Services
   - [ ] Proxmox VE Cluster
   - [ ] Backup
@@ -111,8 +115,10 @@ graph TB
   - [ ] LDAP
     - [ ] Configuration (Server)
     - [ ] Configuration (Directory)
-  - [ ] --placeholder--
-  - [ ] --placeholder--
+  - [ ] LanCache
+    - [ ] Setup
+    - [ ] integration into DNS
+  - [ ] Storage
   - [ ] --placeholder--
   - [ ] --placeholder--
   - [ ] --placeholder--
