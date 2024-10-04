@@ -1,0 +1,116 @@
+---
+clusterName: talos-test01
+endpoint: https://192.168.10.99:6443
+domain: talos-test01.kube.cluster.homelab.local
+allowSchedulingOnMasters: true
+clusterPodNets:
+  - 10.244.0.0/16
+clusterSvcNets:
+  - 10.96.0.0/12
+#additionalApiServerCertSans:
+#  - 192.168.10.1
+#  - 192.168.10.2
+#  - 192.168.10.3
+
+nodes:
+  - hostname: controller01
+    ipAddress: 192.168.11.1
+    controlPlane: true
+    installDisk: /dev/sda
+    nodeLabels:
+      rack: network01
+      zone: herkendorf
+      hardware: fujitso_futro_s920
+    nodeAnnotations:
+      rack: network01
+    networkInterfaces:
+    - interface: eth0
+      dhcp: false
+      vlans:
+        - vlanId: 10
+          addresses:
+            - 192.168.11.1/24
+          routes:
+            - network: 0.0.0.0/0 # The route's network (destination).
+              gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
+          dhcp: false
+          vip:
+            ip: 192.168.11.99
+  - hostname: controller02
+    ipAddress: 192.168.11.2
+    controlPlane: true
+    installDisk: /dev/sda
+    nodeLabels:
+      rack: network01
+      zone: herkendorf
+      hardware: fujitso_futro_s920
+    nodeAnnotations:
+      rack: network01
+    networkInterfaces:
+    - interface: eth0
+      dhcp: false
+      vlans:
+        - vlanId: 10
+          addresses:
+            - 192.168.11.2/24
+          routes:
+            - network: 0.0.0.0/0 # The route's network (destination).
+              gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
+          dhcp: false
+          vip:
+            ip: 192.168.11.99
+  - hostname: controller03
+    ipAddress: 192.168.11.3
+    controlPlane: true
+    installDisk: /dev/sda
+    nodeLabels:
+      rack: network01
+      zone: herkendorf
+      hardware: fujitso_futro_s920
+    nodeAnnotations:
+      rack: network01
+    networkInterfaces:
+    - interface: eth0
+      dhcp: false
+      vlans:
+        - vlanId: 10
+          addresses:
+            - 192.168.11.3/24
+          routes:
+            - network: 0.0.0.0/0 # The route's network (destination).
+              gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
+          dhcp: false
+          vip:
+            ip: 192.168.11.99
+
+
+
+controlPlane:
+  nameservers:
+    - 192.168.10.254
+    - 1.1.1.1
+    - 8.8.8.8
+    - 8.8.4.4
+#  networkInterfaces:
+#    - interface: eth0
+#      dhcp: false
+#      vlans:
+#        - vlanId: 10
+#          routes:
+#            - network: 0.0.0.0/0 # The route's network (destination).
+#              gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
+#          dhcp: false
+#          vip:
+#            ip: 192.168.10.99
+
+worker:
+  ingressFirewall:
+    defaultAction: block
+    rules:
+      - name: apid-ingress
+        portSelector:
+          ports:
+            - 50000
+          protocol: tcp
+        ingress:
+          - subnet: 10.96.0.0/12
