@@ -1,6 +1,6 @@
 ---
 clusterName: talos-test01
-endpoint: https://192.168.10.99:6443
+endpoint: https://192.168.11.99:6443
 domain: talos-test01.kube.cluster.homelab.local
 allowSchedulingOnMasters: true
 clusterPodNets:
@@ -24,12 +24,12 @@ nodes:
     nodeAnnotations:
       rack: network01
     networkInterfaces:
-    - interface: eth0
+    - interface: enp1s0
       dhcp: false
       vlans:
         - vlanId: 10
           addresses:
-            - 192.168.11.1/24
+            - 192.168.11.1/23
           routes:
             - network: 0.0.0.0/0 # The route's network (destination).
               gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
@@ -47,12 +47,12 @@ nodes:
     nodeAnnotations:
       rack: network01
     networkInterfaces:
-    - interface: eth0
+    - interface: enp1s0
       dhcp: false
       vlans:
         - vlanId: 10
           addresses:
-            - 192.168.11.2/24
+            - 192.168.11.2/23
           routes:
             - network: 0.0.0.0/0 # The route's network (destination).
               gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
@@ -70,12 +70,12 @@ nodes:
     nodeAnnotations:
       rack: network01
     networkInterfaces:
-    - interface: eth0
+    - interface: enp1s0
       dhcp: false
       vlans:
         - vlanId: 10
           addresses:
-            - 192.168.11.3/24
+            - 192.168.11.3/23
           routes:
             - network: 0.0.0.0/0 # The route's network (destination).
               gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
