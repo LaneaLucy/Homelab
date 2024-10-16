@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: dns
+spec:
+  chart:
+    spec:
+      chart: pihole
+      sourceRef:
+        kind: HelmRepository
+        name: pihole
+        namespace: flux-system
+  interval: 5m
+  timeout: 5m
+  releaseName: pihole
+  targetNamespace: dns
+  valuesFrom:
+  - kind: ConfigMap
+    name: pihole-helm-chart-value-overrides
+    valuesKey: values.yaml # This is the default, but best to be explicit for clarity
+
+
+
+
+
+
