@@ -1,0 +1,21 @@
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: metallb-bgpadvertisment
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - private-service-pool
+  peers:
+  - metallb-bgppeer-fritzbox
+---
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: metallb-bgppeer-fritzbox
+  namespace: metallb-system
+spec:
+  myASN: 64520
+  peerASN: 64512
+  peerAddress: 192.168.10.254
+

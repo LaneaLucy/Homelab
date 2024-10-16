@@ -59,7 +59,7 @@ graph TB
 
 
 # Subnets:
-  - 192.168.54.0/23 Services (*.services.homelab.local)
+  - 192.168.54.0/23 Private Services (*.private-services.homelab.local)
   - 192.168.16.0/23 Managment (*.mgmt.homelab.local)
 
 # VLAN's:
