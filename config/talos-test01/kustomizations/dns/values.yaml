@@ -59,6 +59,7 @@ extraObjects:
             }
             state MASTER
             interface eth0
+            unicast_src_ip 192.168.54.254
             virtual_router_id 50
             nopreempt
             priority 100
