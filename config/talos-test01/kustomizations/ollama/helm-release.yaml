@@ -1,25 +1,24 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: pihole
-  namespace: dns
+  name: ollama
+  namespace: llm
 spec:
   chart:
     spec:
-      chart: pihole
-      reconcileStrategy: Revision
+      chart: ollama
       sourceRef:
         kind: HelmRepository
-        name: pihole
+        name: ollama-helm
         namespace: flux-system
   interval: 5m
   timeout: 5m
-  releaseName: pihole
-  targetNamespace: dns
+  releaseName: ollama
+  targetNamespace: llm
   valuesFrom:
   - kind: ConfigMap
-    name: pihole-helm-chart-value-overrides
+    name: ollama-helm-chart-value-overrides
     valuesKey: values.yaml # This is the default, but best to be explicit for clarity
 
 

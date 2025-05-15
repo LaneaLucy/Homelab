@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: config-ollama
+  namespace: llm
+resources:
+- helm-release.yaml
+- helm-repository.yaml
+
+configMapGenerator:
+- name: ollama-helm-chart-value-overrides
+  namespace: llm
+  files:
+  - values.yaml
+configurations:
+  - kustomizeconfig.yaml
