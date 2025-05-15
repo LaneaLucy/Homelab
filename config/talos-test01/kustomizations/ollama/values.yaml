@@ -86,6 +86,8 @@ ollama:
     #  - mistral
     pull: 
       - llama2:13b
+      - llama3.2:1b
+      - llama3.1
 
     # -- List of models to load in memory at container startup
     # run:
