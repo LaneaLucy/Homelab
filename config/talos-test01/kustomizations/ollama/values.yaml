@@ -211,9 +211,9 @@ ingress:
 # ref: http://kubernetes.io/docs/user-guide/compute-resources/
 resources:
   # -- Pod requests
-  requests: {}
+  requests: 
     # Memory request
-    # memory: 4096Mi
+    memory: 8192Mi
 
     # CPU request
     # cpu: 2000m
@@ -226,7 +226,7 @@ resources:
     # CPU limit
     # cpu: 4000m
 
-# Configure extra options for liveness probe
+# Configure extra options for liveness probeflux bootstrap git --cluster-domain "talos-test01.kube.cluster.homelab.local" --url=ssh://git@github.com/LaneaLucy/Homelab --branch=main --private-key-file=<path/to/ssh/private.key> --password= --path=config/talos-test01/config-flux
 # ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
 livenessProbe:
   # -- Enable livenessProbe
