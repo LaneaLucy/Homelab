@@ -16,6 +16,12 @@ serviceDns:
     service: private
 serviceDhcp:
   enabled: false
+
+extraEnvVars: 
+  FTLCONF_dns_listeningMode: 'ALL'
+
+
+
 #extraContainers:
 #  - name: pihole-keepalived
 #    image: osixia/keepalived:2.0.20
