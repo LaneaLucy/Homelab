@@ -2,14 +2,14 @@
 apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: ClusterTunnel
 metadata:
-  name: talos-test01-cluster-tunnel      # The ClusterTunnel Custom Resource Name
+  name: talos-test01-cluster-tunnel-lanealucy      # The ClusterTunnel Custom Resource Name
 spec:
   newTunnel:
-    name: talos-test01-tunnel         # Name of your new tunnel on Cloudflare
+    name: talos-test01-tunnel-lanealucy         # Name of your new tunnel on Cloudflare
   size: 2                       # This is the number of replicas for cloudflared
   cloudflare:
     email: lanealucy@gmail.com     # Your email used to login to the Cloudflare Dashboard
-    domain: hsz-hosting.de         # Domain under which the tunnel runs and adds DNS entries to
+    domain: lanealucy.de         # Domain under which the tunnel runs and adds DNS entries to
     secret: cloudflare-secrets  # The secret created before
     # accountId and accountName cannot be both empty. If both are provided, Account ID is used if valid, else falls back to Account Name.
     accountId: 919ac8d03ea8ed445dcdfd6f70176a07
