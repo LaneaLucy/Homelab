@@ -1,7 +1,7 @@
 ---
 clusterName: talos-test01
 endpoint: https://192.168.11.99:6443
-domain: talos-test01.kube.cluster.homelab.local
+domain: talos-test01.kube.cluster.homelab.internal
 allowSchedulingOnMasters: true
 clusterPodNets:
   - 10.244.0.0/16
@@ -82,6 +82,24 @@ nodes:
           dhcp: false
           vip:
             ip: 192.168.11.99
+  - hostname: worker01
+    ipAddress: 192.168.11.100
+    controlPlane: false
+    installDisk: /dev/sda
+    nodeLabels:
+      rack: network01
+      zone: herkendorf
+      hardware: fujitso_esprimo_q920
+    nodeAnnotations:
+      rack: network01
+    networkInterfaces:
+    - interface: enp0s25
+      addresses:
+        - 192.168.11.100/23
+      routes:
+        - network: 0.0.0.0/0 # The route's network (destination).
+          gateway: 192.168.10.254 # The route's gateway (if empty, creates link scope route).
+      dhcp: false
 
 
 
@@ -91,6 +109,11 @@ controlPlane:
     - 1.1.1.1
     - 8.8.8.8
     - 8.8.4.4
+  machine:
+    kubelet:
+      extraArgs:
+        rotate-server-certificates: true
+
 #  networkInterfaces:
 #    - interface: eth0
 #      dhcp: false
@@ -104,13 +127,22 @@ controlPlane:
 #            ip: 192.168.10.99
 
 worker:
-  ingressFirewall:
-    defaultAction: block
-    rules:
-      - name: apid-ingress
-        portSelector:
-          ports:
-            - 50000
-          protocol: tcp
-        ingress:
-          - subnet: 10.96.0.0/12
+  nameservers:
+    - 192.168.10.254
+    - 1.1.1.1
+    - 8.8.8.8
+    - 8.8.4.4
+  machine:
+    kubelet:
+      extraArgs:
+        rotate-server-certificates: true
+#  ingressFirewall:
+#    defaultAction: block
+#    rules:
+#      - name: apid-ingress
+#        portSelector:
+#          ports:
+#            - 50000
+#          protocol: tcp
+#        ingress:
+#          - subnet: 10.96.0.0/12

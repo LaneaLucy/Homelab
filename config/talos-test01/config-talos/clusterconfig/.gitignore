@@ -2,3 +2,4 @@ talos-test01-controller01.yaml
 talos-test01-controller02.yaml
 talos-test01-controller03.yaml
 talosconfig
+talos-test01-worker01.yaml
