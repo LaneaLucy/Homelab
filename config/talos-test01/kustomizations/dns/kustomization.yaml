@@ -7,6 +7,7 @@ metadata:
 resources:
 - helm-release.yaml
 - helm-repository.yaml
+- external-dns.yaml
 
 configMapGenerator:
 - name: pihole-helm-chart-value-overrides
