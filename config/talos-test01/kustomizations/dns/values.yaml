@@ -19,6 +19,12 @@ serviceDhcp:
 
 extraEnvVars: 
   FTLCONF_dns_listeningMode: 'ALL'
+  FTLCONF_dns.blocking_active: 'false'
+
+# -- default upstream DNS 1 server to use
+DNS1: null
+# -- default upstream DNS 2 server to use
+DNS2: null
 
 
 
