@@ -1,0 +1,13 @@
+apiVersion: piraeus.io/v1
+kind: LinstorSatelliteConfiguration
+metadata:
+  name: linstor-pool1-configuration
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: ""
+  storagePools:
+    - name: pool1
+      zfsPool: {}
+      source:
+        hostDevices:
+          - /dev/nvme0n1

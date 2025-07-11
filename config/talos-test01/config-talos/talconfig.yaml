@@ -15,6 +15,22 @@ clusterSvcNets:
 nodes:
   - hostname: controller01
     ipAddress: 192.168.11.1
+    schematic:
+      customization:
+        extraKernelArgs:
+          - net.ifnames=0
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/amd-ucode
+            - siderolabs/amdgpu
+            - siderolabs/zfs
+            - siderolabs/drbd
+    kernelModules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp
+      - name: zfs
     controlPlane: true
     installDisk: /dev/sda
     nodeLabels:
@@ -24,7 +40,8 @@ nodes:
     nodeAnnotations:
       rack: network01
     networkInterfaces:
-    - interface: enp1s0
+    - deviceSelector:
+        busPath: "0*" # should select any hardware network device, if you have just one, it will be selected
       dhcp: false
       vlans:
         - vlanId: 10
@@ -38,6 +55,22 @@ nodes:
             ip: 192.168.11.99
   - hostname: controller02
     ipAddress: 192.168.11.2
+    schematic:
+      customization:
+        extraKernelArgs:
+          - net.ifnames=0
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/amd-ucode
+            - siderolabs/amdgpu
+            - siderolabs/zfs
+            - siderolabs/drbd
+    kernelModules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp
+      - name: zfs
     controlPlane: true
     installDisk: /dev/sda
     nodeLabels:
@@ -47,7 +80,8 @@ nodes:
     nodeAnnotations:
       rack: network01
     networkInterfaces:
-    - interface: enp1s0
+    - deviceSelector:
+        busPath: "0*" # should select any hardware network device, if you have just one, it will be selected
       dhcp: false
       vlans:
         - vlanId: 10
@@ -61,6 +95,22 @@ nodes:
             ip: 192.168.11.99
   - hostname: controller03
     ipAddress: 192.168.11.3
+    schematic:
+      customization:
+        extraKernelArgs:
+          - net.ifnames=0
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/amd-ucode
+            - siderolabs/amdgpu
+            - siderolabs/zfs
+            - siderolabs/drbd
+    kernelModules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp
+      - name: zfs
     controlPlane: true
     installDisk: /dev/sda
     nodeLabels:
@@ -70,7 +120,8 @@ nodes:
     nodeAnnotations:
       rack: network01
     networkInterfaces:
-    - interface: enp1s0
+    - deviceSelector:
+        busPath: "0*" # should select any hardware network device, if you have just one, it will be selected
       dhcp: false
       vlans:
         - vlanId: 10

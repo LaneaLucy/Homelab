@@ -1,0 +1,17 @@
+# trunk-ignore-all(prettier)
+apiVersion: piraeus.io/v1
+kind: LinstorCluster
+metadata:
+  name: linstor-cluster
+spec:
+  apiTLS:
+    certManager:
+      name: linstor-api-ca
+      kind: Issuer
+  internalTLS:
+    certManager:
+      name: linstor-internal-ca
+      kind: Issuer
+  properties:
+    - name: DrbdOptions/Net/tls
+      value: "yes"
