@@ -1,0 +1,51 @@
+{
+    "nodePathMap":[
+    {
+            "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
+            "paths":["/var/mnt/local-path-provisioner"]
+    }
+    ],
+    "storageClassConfigs":{
+        "nvme":{
+            "storageClass":{
+                "create": true,
+                "defaultClass": false,
+                "defaultVolumeType": "hostPath",
+                "reclaimPolicy": "Delete",
+
+                "allowedTopologies":[
+                {
+                    "matchLabelExpressions":[
+                    {
+                        "key": "zone",
+                        "values": [
+                            "herkendorf"
+                        ]
+                    },
+                    {
+                        "key": "rack",
+                        "values": [
+                            "network01"
+                        ]
+                    }
+                    ]
+                }
+                ]
+            },
+            "nodePathMap":[
+                {
+                    "node":"controller01",
+                    "paths":["/var/mnt/seaweedfs-data"]
+                },
+                {
+                    "node":"controller02",
+                    "paths":["/var/mnt/seaweedfs-data"]
+                },
+                {
+                    "node":"controller03",
+                    "paths":["/var/mnt/seaweedfs-data"]
+                }
+            ]
+        }
+    }
+}

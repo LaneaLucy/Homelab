@@ -41,7 +41,7 @@ nodes:
       rack: network01
     networkInterfaces:
     - deviceSelector:
-        busPath: "0*" # should select any hardware network device, if you have just one, it will be selected
+        busPath: 0* # should select any hardware network device, if you have just one, it will be selected
       dhcp: false
       vlans:
         - vlanId: 10
@@ -81,7 +81,7 @@ nodes:
       rack: network01
     networkInterfaces:
     - deviceSelector:
-        busPath: "0*" # should select any hardware network device, if you have just one, it will be selected
+        busPath: 0* # should select any hardware network device, if you have just one, it will be selected
       dhcp: false
       vlans:
         - vlanId: 10
@@ -121,7 +121,7 @@ nodes:
       rack: network01
     networkInterfaces:
     - deviceSelector:
-        busPath: "0*" # should select any hardware network device, if you have just one, it will be selected
+        busPath: 0* # should select any hardware network device, if you have just one, it will be selected
       dhcp: false
       vlans:
         - vlanId: 10
@@ -135,6 +135,10 @@ nodes:
             ip: 192.168.11.99
   - hostname: worker01
     ipAddress: 192.168.11.100
+    schematic:
+      customization:
+        extraKernelArgs:
+          - net.ifnames=0
     controlPlane: false
     installDisk: /dev/sda
     nodeLabels:
@@ -144,7 +148,8 @@ nodes:
     nodeAnnotations:
       rack: network01
     networkInterfaces:
-    - interface: enp0s25
+    - deviceSelector:
+        busPath: 0* # should select any hardware network device, if you have just one, it will be selected
       addresses:
         - 192.168.11.100/23
       routes:
@@ -164,6 +169,15 @@ controlPlane:
     kubelet:
       extraArgs:
         rotate-server-certificates: true
+  userVolumes:
+    - name: seaweedfs-data
+      provisioning:
+        diskSelector:
+          match: disk.transport == 'nvme' && !system_disk
+        minSize: 200GB
+        grow: true
+      filesystem:
+        type: xfs
 
 #  networkInterfaces:
 #    - interface: eth0

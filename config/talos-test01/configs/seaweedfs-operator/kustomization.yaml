@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - helmrelease.yaml
+  - seaweed_v1_seaweed.yaml
+
+#configMapGenerator:
+#- name: seaweedfs-operator-helm-chart-value-overrides
+#  namespace: seaweedfs-operator
+#  files:
+#  - values.yaml
+#configurations:
+#  - kustomizeconfig.yaml
